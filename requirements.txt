@@ -1,0 +1,6 @@
+# Core runtime intentionally uses Python standard library only.
+# Optional PDF readers (install on Windows if needed):
+# pypdf>=5.0
+# PyMuPDF>=1.24
+# pyinstaller>=6.0
+

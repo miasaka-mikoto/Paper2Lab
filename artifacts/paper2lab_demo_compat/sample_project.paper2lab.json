@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "saved_at": "2026-10-04T23:50:53",
+  "papers": [
+    {
+      "id": "paper-6e4e14c8",
+      "title": "EchoRAG: A Lightweight Retrieval Memory for Offline Assistants",
+      "authors": "",
+      "year": "",
+      "venue": "",
+      "abstract": "We present EchoRAG, a small retrieval-and-memory module for task-oriented assistants. EchoRAG stores previous observations as timestamped notes and retrieves the top *k* notes for a new query. On the fictional MemoBench benchmark, the method improves exact-answer accuracy over a no-memory baseline while using a bounded context window. This document is an intentionally fictional, self-contained sample paper for Paper2Lab's offline demonstration; it does not claim results about a real system. # Introduction Long-running agents often lose useful facts when their context window is small. A reproducible memory component should expose its retrieval rule, dataset split, and evaluation metric. Our central claim is that a deterministic top-*k* memory can improve answer accuracy without changing the base model. The paper makes three testable claims: 1. EchoRAG improves exact-match accuracy over the no-memory baseline. 2. Increasing the memory budget from 2 to 4 notes improves recall on queries whose answer was seen earlier. 3. The gain is retained when the query order is replayed with a fixed seed. # Related Work Prior memory systems use vector databases or learned controllers. We focus on a",
+      "keywords": [],
+      "notes": "",
+      "tags": [],
+      "local_path": "/workspace/scratch/a9ac8a328983/sample/sample_paper.md",
+      "text": "# EchoRAG: A Lightweight Retrieval Memory for Offline Assistants\n\nAuthors: Mina Chen, Taro Sato\nYear: 2026\nVenue: Proceedings of the Fictional Workshop on Reproducible Agents\nKeywords: retrieval augmented generation, memory, offline evaluation\n\n# Abstract\n\nWe present EchoRAG, a small retrieval-and-memory module for task-oriented\nassistants.  EchoRAG stores previous observations as timestamped notes and\nretrieves the top *k* notes for a new query.  On the fictional MemoBench\nbenchmark, the method improves exact-answer accuracy over a no-memory baseline\nwhile using a bounded context window.  This document is an intentionally\nfictional, self-contained sample paper for Paper2Lab's offline demonstration;\nit does not claim results about a real system.\n\n# Introduction\n\nLong-running agents often lose useful facts when their context window is\nsmall.  A reproducible memory component should expose its retrieval rule,\ndataset split, and evaluation metric.  Our central claim is that a deterministic\ntop-*k* memory can improve answer accuracy without changing the base model.\n\nThe paper makes three testable claims:\n\n1. EchoRAG improves exact-match accuracy over the no-memory baseline.\n2. Increasing the memory budget from 2 to 4 notes improves recall on queries\n   whose answer was seen earlier.\n3. The gain is retained when the query order is replayed with a fixed seed.\n\n# Related Work\n\nPrior memory systems use vector databases or learned controllers.  We focus on\nan auditable rule-based component so that an experiment can be run offline.\n\n# Method\n\nEach interaction is converted into a note `(key, value, timestamp)`.  Given a\nquery, the retriever scores notes by token overlap, breaks ties by recency, and\nreturns the top *k*.  The answer module copies the value from the highest\nscoring note.  The only independent variable in the main experiment is the\nmemory budget *k*; the answer module, tokenizer, and query order are controls.\n\nAlgorithm 1 — deterministic retrieval:\n\n1. tokenize the query and every stored key;\n2. compute overlap score `|query ∩ key|`;\n3. sort by `(score, timestamp)` descending;\n4. return the first `k` notes.\n\n# Dataset\n\nMemoBench-S is a fictional dataset of 120 short key-value interactions.  It is\nsplit into 60 training, 30 validation, and 30 test queries.  Each test query\nhas one answer in the preceding interaction history.  The sample distribution\nis balanced across the three topics `city`, `food`, and `schedule`.\n\n# Experiment\n\nWe compare EchoRAG with `NoMemory`, which receives only the current query.\nExperiments use the deterministic MockModel, seed 7, memory budgets `k ∈ {0,\n2, 4}` and three repeated runs.  We report exact-match accuracy, answer recall,\nand mean lookup time.  The expected direction is that `k=4` is at least as\naccurate as `k=2`, while lookup time remains below 5 ms per query in the mock\nenvironment.\n\n# Metrics\n\nExact-match accuracy is the fraction of predictions equal to the reference\nanswer.  Answer recall is the fraction of test answers found in retrieved\nnotes.  We also record mean lookup time in milliseconds.  No metric is treated\nas evidence beyond this fictional sample.\n\n# Results\n\nThe paper-reported result for the main comparison is:\n\n| Method | Accuracy | Recall | Lookup time (ms) |\n|---|---:|---:|---:|\n| NoMemory | 0.600 | 0.000 | 0.10 |\n| EchoRAG (k=2) | 0.800 | 0.800 | 0.80 |\n| EchoRAG (k=4) | 0.814 | 0.900 | 1.20 |\n\nThese numbers are fixed demonstration values, not measurements from a real\npublication.\n\n# Ablation\n\nRemoving the recency tie-breaker lowers accuracy from 0.814 to 0.810 in the\nfictional ablation.  Setting `k=0` is equivalent to the NoMemory baseline.\n\n# Limitations\n\nThe dataset, model, and results are synthetic.  The overlap scorer does not\nrepresent semantic retrieval, and the benchmark is too small to support claims\nabout real-world agents.  A real reproduction must replace every TODO with\ndocumented code and a legally obtained dataset.\n\n# Conclusion\n\nEchoRAG is a compact example of a claim that can be translated into a local\nexperiment blueprint.  Paper2Lab should preserve the distinction between the\nreported values above and locally generated values, and should mark missing\nimplementation details as TODO rather than inventing them.\n\n# Appendix\n\nDefault configuration: `seed: 7`, `memory_budget: 4`, `repeats: 3`,\n`metric: exact_match`.  The sample experiment intentionally uses a deterministic\nMockExperiment so that a clean installation can reproduce the same result.\n",
+      "sections": [
+        {
+          "id": "section-ac808e62",
+          "name": "Abstract",
+          "start": 245,
+          "end": 757,
+          "text": "We present EchoRAG, a small retrieval-and-memory module for task-oriented\nassistants.  EchoRAG stores previous observations as timestamped notes and\nretrieves the top *k* notes for a new query.  On the fictional MemoBench\nbenchmark, the method improves exact-answer accuracy over a no-memory baseline\nwhile using a bounded context window.  This document is an intentionally\nfictional, self-contained sample paper for Paper2Lab's offline demonstration;\nit does not claim results about a real system."
+        },
+        {
+          "id": "section-2698fc27",
+          "name": "Introduction",
+          "start": 757,
+          "end": 1376,
+          "text": "Long-running agents often lose useful facts when their context window is\nsmall.  A reproducible memory component should expose its retrieval rule,\ndataset split, and evaluation metric.  Our central claim is that a deterministic\ntop-*k* memory can improve answer accuracy without changing the base model.\n\nThe paper makes three testable claims:\n\n1. EchoRAG improves exact-match accuracy over the no-memory baseline.\n2. Increasing the memory budget from 2 to 4 notes improves recall on queries\n   whose answer was seen earlier.\n3. The gain is retained when the query order is replayed with a fixed seed."
+        },
+        {
+          "id": "section-2552e0be",
+          "name": "Related Work",
+          "start": 1376,
+          "end": 1548,
+          "text": "Prior memory systems use vector databases or learned controllers.  We focus on\nan auditable rule-based component so that an experiment can be run offline."
+        },
+        {
+          "id": "section-949764f4",
+          "name": "Method",
+          "start": 1548,
+          "end": 2147,
+          "text": "Each interaction is converted into a note `(key, value, timestamp)`.  Given a\nquery, the retriever scores notes by token overlap, breaks ties by recency, and\nreturns the top *k*.  The answer module copies the value from the highest\nscoring note.  The only independent variable in the main experiment is the\nmemory budget *k*; the answer module, tokenizer, and query order are controls.\n\nAlgorithm 1 — deterministic retrieval:\n\n1. tokenize the query and every stored key;\n2. compute overlap score `|query ∩ key|`;\n3. sort by `(score, timestamp)` descending;\n4. return the first `k` notes."
+        },
+        {
+          "id": "section-d10fb9bd",
+          "name": "Dataset",
+          "start": 2147,
+          "end": 2461,
+          "text": "MemoBench-S is a fictional dataset of 120 short key-value interactions.  It is\nsplit into 60 training, 30 validation, and 30 test queries.  Each test query\nhas one answer in the preceding interaction history.  The sample distribution\nis balanced across the three topics `city`, `food`, and `schedule`."
+        },
+        {
+          "id": "section-6ecadb16",
+          "name": "Experiment",
+          "start": 2461,
+          "end": 2874,
+          "text": "We compare EchoRAG with `NoMemory`, which receives only the current query.\nExperiments use the deterministic MockModel, seed 7, memory budgets `k ∈ {0,\n2, 4}` and three repeated runs.  We report exact-match accuracy, answer recall,\nand mean lookup time.  The expected direction is that `k=4` is at least as\naccurate as `k=2`, while lookup time remains below 5 ms per query in the mock\nenvironment."
+        },
+        {
+          "id": "section-52855bae",
+          "name": "Metrics",
+          "start": 2874,
+          "end": 3156,
+          "text": "Exact-match accuracy is the fraction of predictions equal to the reference\nanswer.  Answer recall is the fraction of test answers found in retrieved\nnotes.  We also record mean lookup time in milliseconds.  No metric is treated\nas evidence beyond this fictional sample."
+        },
+        {
+          "id": "section-7757d73d",
+          "name": "Results",
+          "start": 3156,
+          "end": 3501,
+          "text": "The paper-reported result for the main comparison is:\n\n| Method | Accuracy | Recall | Lookup time (ms) |\n|---|---:|---:|---:|\n| NoMemory | 0.600 | 0.000 | 0.10 |\n| EchoRAG (k=2) | 0.800 | 0.800 | 0.80 |\n| EchoRAG (k=4) | 0.814 | 0.900 | 1.20 |\n\nThese numbers are fixed demonstration values, not measurements from a real\npublication."
+        },
+        {
+          "id": "section-1864666c",
+          "name": "Ablation",
+          "start": 3501,
+          "end": 3665,
+          "text": "Removing the recency tie-breaker lowers accuracy from 0.814 to 0.810 in the\nfictional ablation.  Setting `k=0` is equivalent to the NoMemory baseline."
+        },
+        {
+          "id": "section-46317772",
+          "name": "Limitations",
+          "start": 3665,
+          "end": 3959,
+          "text": "The dataset, model, and results are synthetic.  The overlap scorer does not\nrepresent semantic retrieval, and the benchmark is too small to support claims\nabout real-world agents.  A real reproduction must replace every TODO with\ndocumented code and a legally obtained dataset."
+        },
+        {
+          "id": "section-1d0b02f8",
+          "name": "Conclusion",
+          "start": 3959,
+          "end": 4262,
+          "text": "EchoRAG is a compact example of a claim that can be translated into a local\nexperiment blueprint.  Paper2Lab should preserve the distinction between the\nreported values above and locally generated values, and should mark missing\nimplementation details as TODO rather than inventing them."
+        },
+        {
+          "id": "section-81a2b3a0",
+          "name": "Appendix",
+          "start": 4262,
+          "end": 4498,
+          "text": "Default configuration: `seed: 7`, `memory_budget: 4`, `repeats: 3`,\n`metric: exact_match`.  The sample experiment intentionally uses a deterministic\nMockExperiment so that a clean installation can reproduce the same result."
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim-dbf1f75e",
+          "claim_text": "benchmark, the method improves exact-answer accuracy over a no-memory baseline",
+          "evidence": "Section: Abstract",
+          "section": "Abstract",
+          "importance": "Main",
+          "reproducible": "Needs review",
+          "required_experiment": "Recreate the reported comparison",
+          "kind": "Main Claim"
+        },
+        {
+          "id": "claim-5a09e685",
+          "claim_text": "EchoRAG improves exact-match accuracy over the no-memory baseline.",
+          "evidence": "Section: Introduction",
+          "section": "Introduction",
+          "importance": "Supporting",
+          "reproducible": "Needs review",
+          "required_experiment": "Recreate the reported comparison",
+          "kind": "Supporting Claim"
+        },
+        {
+          "id": "claim-b46336bc",
+          "claim_text": "Increasing the memory budget from 2 to 4 notes improves recall on queries",
+          "evidence": "Section: Introduction",
+          "section": "Introduction",
+          "importance": "Supporting",
+          "reproducible": "Needs review",
+          "required_experiment": "Recreate the reported comparison",
+          "kind": "Supporting Claim"
+        }
+      ],
+      "blueprints": [
+        {
+          "id": "blueprint-bdcf87e6",
+          "claim_id": "claim-dbf1f75e",
+          "research_question": "Can we reproduce: benchmark, the method improves exact-answer accuracy over a no-memory baseline",
+          "hypothesis": "The proposed method will match the paper's reported direction under the stated controls.",
+          "independent_variables": [
+            "method",
+            "retrieval_memory"
+          ],
+          "dependent_variables": [
+            "accuracy"
+          ],
+          "controls": [
+            "same synthetic dataset",
+            "fixed seed"
+          ],
+          "dataset": "paper-reported dataset (availability to be verified)",
+          "model": "TODO: specify the paper model",
+          "baseline": "TODO: implement the paper baseline",
+          "metrics": [
+            "accuracy"
+          ],
+          "expected_result": "Improvement in the reported direction",
+          "implementation_plan": [
+            "Verify the fictional dataset split and metric protocol.",
+            "Implement the method and baseline; keep missing code as TODO.",
+            "Run a fixed-seed mock evaluation and record stdout/environment.",
+            "Compare local values with the paper-reported result and document causes."
+          ],
+          "paper_reported_result": {
+            "accuracy": 0.814
+          },
+          "local_result": {
+            "accuracy": 0.809,
+            "source": "MockExperiment"
+          },
+          "difference": {
+            "accuracy": {
+              "paper": 0.814,
+              "local": 0.809,
+              "absolute": -0.005,
+              "relative": -0.006143,
+              "status": "Close"
+            }
+          },
+          "status": "Executed (mock)",
+          "created_at": "2026-10-04T23:50:53"
+        }
+      ],
+      "formulas": [],
+      "created_at": "2026-10-04T23:50:53",
+      "updated_at": "2026-10-04T23:50:53"
+    }
+  ],
+  "runs": [
+    {
+      "id": "run-ef35bd13",
+      "blueprint_id": "blueprint-bdcf87e6",
+      "status": "Completed",
+      "started_at": "2026-10-04T23:50:53",
+      "finished_at": "2026-10-04T23:50:53",
+      "stdout": "MockExperiment: deterministic synthetic evaluation completed.\n",
+      "stderr": "",
+      "runtime_seconds": 0.0201,
+      "seed": 7,
+      "result": {
+        "accuracy": 0.809,
+        "source": "MockExperiment"
+      },
+      "environment": {
+        "python": "3.12.14",
+        "provider": "Mock LLM / RuleBased",
+        "offline": true
+      }
+    }
+  ],
+  "run_to_paper": {
+    "run-ef35bd13": "paper-6e4e14c8"
+  }
+}

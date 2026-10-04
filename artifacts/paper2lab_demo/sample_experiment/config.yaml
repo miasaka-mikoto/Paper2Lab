@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "blueprint_id": "bp_39c7d0e58df6",
+  "paper_id": "paper_550e239e7476",
+  "claim_id": "claim_78d97266b049",
+  "seed": 42,
+  "mode": "mock",
+  "metrics": [
+    "accuracy",
+    "recall"
+  ],
+  "implementation_plan": [
+    "Verify the paper's dataset, split, preprocessing, and license.",
+    "Implement the stated method and baseline with unresolved pieces marked TODO.",
+    "Run a fixed-seed smoke test, then evaluate every reported metric.",
+    "Record environment, stdout/stderr, and compare local values with the paper."
+  ],
+  "dataset": "MemoBench-S is a fictional dataset of 120 short key-value interactions.",
+  "model": "Each interaction is converted into a note `(key, value, timestamp)`.",
+  "baseline": "No-retrieval baseline",
+  "todo": [
+    "Implement the paper's model and data pipeline; this skeleton intentionally does not pretend they exist."
+  ]
+}

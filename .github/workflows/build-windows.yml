@@ -1,0 +1,36 @@
+name: Build Paper2Lab for Windows
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*.*.*"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install build tools
+        run: python -m pip install --upgrade pip pyinstaller
+      - name: Build executable
+        run: ./build_windows.ps1
+        shell: pwsh
+      - name: Smoke test CLI
+        run: python -m paper2lab --self-test
+      - name: Smoke test canonical service
+        run: python -m paper2lab --service-self-test
+      - name: Smoke test frozen executable
+        shell: pwsh
+        run: |
+          & .\dist\Paper2Lab.exe --self-test
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\dist\Paper2Lab.exe --service-self-test
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Upload Paper2Lab.exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: Paper2Lab-windows
+          path: dist/Paper2Lab.exe

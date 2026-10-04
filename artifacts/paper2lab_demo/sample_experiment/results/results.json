@@ -1,0 +1,13 @@
+{
+  "status": "mock_skeleton",
+  "mode": "mock",
+  "metrics": {
+    "accuracy": 0.5324,
+    "recall": 0.5151
+  },
+  "todo": [
+    "Implement the paper's model and data pipeline; this skeleton intentionally does not pretend they exist."
+  ],
+  "seed": 7,
+  "runtime_seconds": 3.3e-05
+}

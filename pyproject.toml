@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paper2lab"
+version = "0.1.0"
+description = "Paper2Lab - paper reproduction experiment factory"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+paper2lab = "paper2lab.app:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["paper2lab*"]
+exclude = ["tests*", "sample*", "artifacts*", "paper2lab_self_test*"]
+
+[tool.pytest.ini_options]
+# Generated sample experiments under artifacts/ contain their own smoke test;
+# the repository's acceptance suite lives in tests/ and should be collected
+# explicitly so a demo run cannot change the test count.
+testpaths = ["tests"]

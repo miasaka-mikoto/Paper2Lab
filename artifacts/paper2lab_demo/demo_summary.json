@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "backend": "Paper2LabService",
+  "offline": true,
+  "sample_paper": "/workspace/scratch/a9ac8a328983/sample/sample_paper.md",
+  "paper_id": "paper_550e239e7476",
+  "title": "EchoRAG: A Lightweight Retrieval Memory for Offline Assistants",
+  "sections": 13,
+  "claims": 21,
+  "blueprint_id": "bp_39c7d0e58df6",
+  "skeleton_dir": "/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo/sample_experiment",
+  "skeleton_run_status": "PASS",
+  "skeleton_result": {
+    "status": "mock_skeleton",
+    "mode": "mock",
+    "metrics": {
+      "accuracy": 0.5324,
+      "recall": 0.5151
+    },
+    "todo": [
+      "Implement the paper's model and data pipeline; this skeleton intentionally does not pretend they exist."
+    ],
+    "seed": 7,
+    "runtime_seconds": 3.3e-05
+  },
+  "run_id": "run_20261004_235053_b8ba1efa",
+  "run_status": "Completed",
+  "result": {
+    "status": "completed",
+    "mode": "mock",
+    "seed": 7,
+    "metrics": {
+      "accuracy": 0.809,
+      "recall": 0.8955
+    },
+    "notes": [
+      "Mock result only; no paid API was called."
+    ]
+  },
+  "differences": {
+    "accuracy": {
+      "metric": "accuracy",
+      "paper_value": 0.814,
+      "local_value": 0.809,
+      "absolute_difference": -0.005,
+      "relative_difference": -0.0061425061,
+      "status": "MATCH",
+      "tolerance": 0.01,
+      "direction": "higher",
+      "note": "",
+      "paper": 0.814,
+      "local": 0.809,
+      "absolute": -0.005,
+      "relative": -0.0061425061,
+      "display_status": "MATCH"
+    },
+    "recall": {
+      "metric": "recall",
+      "paper_value": 0.9,
+      "local_value": 0.8955,
+      "absolute_difference": -0.0045,
+      "relative_difference": -0.005,
+      "status": "MATCH",
+      "tolerance": 0.01,
+      "direction": "higher",
+      "note": "",
+      "paper": 0.9,
+      "local": 0.8955,
+      "absolute": -0.0045,
+      "relative": -0.005,
+      "display_status": "MATCH"
+    }
+  },
+  "report": "/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo/reports/reproduction_report.md",
+  "report_html": "/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo/reports/reproduction_report.html",
+  "project_file": "/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo/sample_project.paper2lab.json",
+  "restored_title": "EchoRAG: A Lightweight Retrieval Memory for Offline Assistants",
+  "restored_blueprints": 1
+}

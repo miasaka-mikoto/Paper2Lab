@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "backend": "CompatBackend",
+  "offline": true,
+  "sample_paper": "/workspace/scratch/a9ac8a328983/sample/sample_paper.md",
+  "paper_id": "paper-6e4e14c8",
+  "title": "EchoRAG: A Lightweight Retrieval Memory for Offline Assistants",
+  "sections": 12,
+  "claims": 3,
+  "blueprint_id": "blueprint-bdcf87e6",
+  "skeleton_dir": "/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo_compat/sample_experiment",
+  "run_id": "run-ef35bd13",
+  "run_status": "Completed",
+  "result": {
+    "accuracy": 0.809,
+    "source": "MockExperiment"
+  },
+  "differences": {
+    "accuracy": {
+      "paper": 0.814,
+      "local": 0.809,
+      "absolute": -0.005,
+      "relative": -0.006143,
+      "status": "Close"
+    }
+  },
+  "report": "/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo_compat/reports/blueprint-bdcf87e6_reproduction_report.md",
+  "project_file": "/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo_compat/sample_project.paper2lab.json",
+  "restored_title": "EchoRAG: A Lightweight Retrieval Memory for Offline Assistants",
+  "restored_blueprints": 1
+}

@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-10-04T15:50:53.643030+00:00",
+  "offline_only": true,
+  "paid_api_calls": 0,
+  "checks": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "returncode": 0,
+      "stdout": ".............................                                            [100%]\n29 passed in 3.76s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "paper2lab",
+        "--self-test"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"paper\": \"sample-paper\",\n  \"sections\": 9,\n  \"claims\": 4,\n  \"skeleton\": \"/tmp/paper2lab-ui-self-test-p25vp9dp/blueprint-d1860399\",\n  \"run\": \"run-434ddd85\",\n  \"difference\": {\n    \"accuracy\": {\n      \"paper\": 0.814,\n      \"local\": 0.809,\n      \"absolute\": -0.005,\n      \"relative\": -0.006143,\n      \"status\": \"Close\"\n    }\n  },\n  \"report\": \"/tmp/paper2lab-ui-self-test-p25vp9dp/reports/blueprint-d1860399_reproduction_report.md\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "paper2lab",
+        "--service-self-test"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"backend\": \"Paper2LabService\",\n  \"sections\": 13,\n  \"claims\": 21,\n  \"metrics\": {\n    \"accuracy\": 0.809,\n    \"recall\": 0.8955\n  },\n  \"report\": {\n    \"markdown\": \"/tmp/paper2lab-service-self-test-1sqoqjvb/reports/reproduction_report.md\",\n    \"html\": \"/tmp/paper2lab-service-self-test-1sqoqjvb/reports/reproduction_report.html\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/run_demo.py",
+        "--workspace",
+        "artifacts/paper2lab_demo",
+        "--fresh"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"backend\": \"Paper2LabService\",\n  \"offline\": true,\n  \"sample_paper\": \"/workspace/scratch/a9ac8a328983/sample/sample_paper.md\",\n  \"paper_id\": \"paper_550e239e7476\",\n  \"title\": \"EchoRAG: A Lightweight Retrieval Memory for Offline Assistants\",\n  \"sections\": 13,\n  \"claims\": 21,\n  \"blueprint_id\": \"bp_39c7d0e58df6\",\n  \"skeleton_dir\": \"/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo/sample_experiment\",\n  \"skeleton_run_status\": \"PASS\",\n  \"skeleton_result\": {\n    \"status\": \"mock_skeleton\",\n    \"mode\": \"mock\",\n    \"metrics\": {\n      \"accuracy\": 0.5324,\n      \"recall\": 0.5151\n    },\n    \"todo\": [\n      \"Implement the paper's model and data pipeline; this skeleton intentionally does not pretend they exist.\"\n    ],\n    \"seed\": 7,\n    \"runtime_seconds\": 3.3e-05\n  },\n  \"run_id\": \"run_20261004_235053_b8ba1efa\",\n  \"run_status\": \"Completed\",\n  \"result\": {\n    \"status\": \"completed\",\n    \"mode\": \"mock\",\n    \"seed\": 7,\n    \"metrics\": {\n      \"accuracy\": 0.809,\n      \"recall\": 0.8955\n    },\n    \"notes\": [\n      \"Mock result only; no paid API was called.\"\n    ]\n  },\n  \"differences\": {\n    \"accuracy\": {\n      \"metric\": \"accuracy\",\n      \"paper_value\": 0.814,\n      \"local_value\": 0.809,\n      \"absolute_difference\": -0.005,\n      \"relative_difference\": -0.0061425061,\n      \"status\": \"MATCH\",\n      \"tolerance\": 0.01,\n      \"direction\": \"higher\",\n      \"note\": \"\",\n      \"paper\": 0.814,\n      \"local\": 0.809,\n      \"absolute\": -0.005,\n      \"relative\": -0.0061425061,\n      \"display_status\": \"MATCH\"\n    },\n    \"recall\": {\n      \"metric\": \"recall\",\n      \"paper_value\": 0.9,\n      \"local_value\": 0.8955,\n      \"absolute_difference\": -0.0045,\n      \"relative_difference\": -0.005,\n      \"status\": \"MATCH\",\n      \"tolerance\": 0.01,\n      \"direction\": \"higher\",\n      \"note\": \"\",\n      \"paper\": 0.9,\n      \"local\": 0.8955,\n      \"absolute\": -0.0045,\n      \"relative\": -0.005,\n      \"display_status\": \"MATCH\"\n    }\n  },\n  \"report\": \"/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo/reports/reproduction_report.md\",\n  \"report_html\": \"/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo/reports/reproduction_report.html\",\n  \"project_file\": \"/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo/sample_project.paper2lab.json\",\n  \"restored_title\": \"EchoRAG: A Lightweight Retrieval Memory for Offline Assistants\",\n  \"restored_blueprints\": 1\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/run_demo.py",
+        "--workspace",
+        "artifacts/paper2lab_demo_compat",
+        "--fresh",
+        "--compat"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"backend\": \"CompatBackend\",\n  \"offline\": true,\n  \"sample_paper\": \"/workspace/scratch/a9ac8a328983/sample/sample_paper.md\",\n  \"paper_id\": \"paper-6e4e14c8\",\n  \"title\": \"EchoRAG: A Lightweight Retrieval Memory for Offline Assistants\",\n  \"sections\": 12,\n  \"claims\": 3,\n  \"blueprint_id\": \"blueprint-bdcf87e6\",\n  \"skeleton_dir\": \"/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo_compat/sample_experiment\",\n  \"run_id\": \"run-ef35bd13\",\n  \"run_status\": \"Completed\",\n  \"result\": {\n    \"accuracy\": 0.809,\n    \"source\": \"MockExperiment\"\n  },\n  \"differences\": {\n    \"accuracy\": {\n      \"paper\": 0.814,\n      \"local\": 0.809,\n      \"absolute\": -0.005,\n      \"relative\": -0.006143,\n      \"status\": \"Close\"\n    }\n  },\n  \"report\": \"/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo_compat/reports/blueprint-bdcf87e6_reproduction_report.md\",\n  \"project_file\": \"/workspace/scratch/a9ac8a328983/artifacts/paper2lab_demo_compat/sample_project.paper2lab.json\",\n  \"restored_title\": \"EchoRAG: A Lightweight Retrieval Memory for Offline Assistants\",\n  \"restored_blueprints\": 1\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "py_compile",
+        "/workspace/scratch/a9ac8a328983/paper2lab/__init__.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/__main__.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/_interop.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/app.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/blueprint.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/claims.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/compare.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/extractor.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/generator.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/main.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/models.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/parser.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/providers.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/report.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/reproducibility.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/runner.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/service.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/storage.py",
+        "/workspace/scratch/a9ac8a328983/paper2lab/ui.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}
