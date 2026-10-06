@@ -5,9 +5,13 @@ on:
   push:
     tags: ["v*.*.*"]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,12 +29,13 @@ jobs:
       - name: Smoke test frozen executable
         shell: pwsh
         run: |
-          & .\dist\Paper2Lab.exe --self-test
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          & .\dist\Paper2Lab.exe --service-self-test
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $ui = Start-Process -FilePath (Join-Path $env:GITHUB_WORKSPACE "dist\Paper2Lab.exe") -ArgumentList "--self-test" -Wait -PassThru
+          if ($ui.ExitCode -ne 0) { throw "Frozen UI self-test failed: $($ui.ExitCode)" }
+          $service = Start-Process -FilePath (Join-Path $env:GITHUB_WORKSPACE "dist\Paper2Lab.exe") -ArgumentList "--service-self-test" -Wait -PassThru
+          if ($service.ExitCode -ne 0) { throw "Frozen service self-test failed: $($service.ExitCode)" }
       - name: Upload Paper2Lab.exe
         uses: actions/upload-artifact@v4
         with:
+          if-no-files-found: error
           name: Paper2Lab-windows
           path: dist/Paper2Lab.exe
