@@ -6,3 +6,13 @@ dist/
 *.egg-info/
 paper2lab_self_test/
 paper2lab_workspace/
+
+# databases (regenerable, do not commit)
+*.sqlite3
+*.sqlite3-journal
+*.db
+
+# secrets & local env
+.env
+venv/
+.venv/
